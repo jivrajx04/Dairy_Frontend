@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="container main-content">
+        <div class="card">
+            <h2 class="card-title">
+               Farmer Milk Entry Form
+            </h2>
+
+            <form [formGroup]="farmerForm" (ngsubmit)="onSubmit()">
+                <div class="grid-layout">
+                    <div class="form-group">
+                        <label class="form-label">
+                            Farmer ID
+                        </label>
+                        <input type="text" formControlName="farmerId" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                           Farmer Name
+                        </label>
+                        <input type="text" formControlName="farmerName" placeholder="Enter farmer's full name" required>
+                        <div *ngIf="farmerForm.get('farmerName')?.touched && farmerForm.get('farmerName')?.invalid">
+                          <small class="error-text">Name is required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Farmer Mobile
+                        </label>
+                        <input type="tel" formControlName="farmerMobile" placeholder="e.g., 9876543210" title="Please enter a 10-digit mobile number" required>
+                        <div *ngIf="farmerForm.get('farmerMobile')?.touched && farmerForm.get('farmerMobile')?.invalid">
+                          <small class="error-text">Mobile Number is required</small>
+                        </div>
+                        <div *ngIf="farmerForm.get('farmerMobile')?.errors?.['pattern']">
+                            <small class="error-text">Enter a valid 10-digit mobile number.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                          Address
+                        </label>
+                        <textarea formControlName="address" rows="2" placeholder="Enter farmer's farm/residence address" required></textarea>
+                        <div *ngIf="farmerForm.get('address')?.touched && farmerForm.get('address')?.invalid">
+                            <small class="error-text">Address is required</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-layout">
+                    <div class="form-group">
+                        <label class="form-label">
+                            Date
+                        </label>
+                        <input type="date" formControlName="date" value="2025-07-17" required>
+                         <div *ngIf="farmerForm.get('date')?.touched && farmerForm.get('date')?.invalid">
+                            <small class="error-text">Date is required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            Milk Dispatch (Liters)
+                        </label>
+                        <input type="number" formControlName="milkDispatch" placeholder="e.g., 50.5" step="0.1" min="0" required>
+                         <div *ngIf="farmerForm.get('milkDispatch')?.touched && farmerForm.get('milkDispatch')?.invalid">
+                            <small class="error-text">Quantity is required</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                       Total Amount (INR)
+                    </label>
+                    <input type="text" formControlName="totalAmount"   [disabled]="farmerForm.invalid">
+                </div>
+
+                <div class="button-container">
+                    <button type="submit" class="submit-button" >
+                      Submit
+                    </button>
+                </div>
+            </form>
+            </div>
+    </div>
+</body>
+</html>
