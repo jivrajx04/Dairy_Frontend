@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { FarmerForm } from './pages/farmer-form/farmer-form';
+import { CustomerForm } from './pages/customer-form/customer-form';
 
 @Component({
   selector: 'app-root',
-  imports: [FarmerForm],
+  imports: [RouterOutlet,FarmerForm],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

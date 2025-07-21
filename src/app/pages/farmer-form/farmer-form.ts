@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, MaxValidator, ReactiveFormsModule, Validators }
   styleUrl: './farmer-form.scss',
 })
 export class FarmerForm {
-  farmerForm: FormGroup;
+  farmerForm!: FormGroup;
   pricePerLiter = 40;
 
   constructor(private fb: FormBuilder){
@@ -18,7 +18,7 @@ export class FarmerForm {
       farmerName: ['',Validators.required],
       farmerMobile:['',[Validators.required,Validators.pattern('^[0-9]{10}$'),Validators.minLength(10),Validators.maxLength(10)]],
       address:['',Validators.required],
-      date:['',Validators.required],
+      date: [new Date().toISOString().slice(0, 10), Validators.required],
       milkDispatch:['',[Validators.required,Validators.min(0.1)]],
       totalAmount:[{value:'',disabled:true}]
     });
@@ -29,12 +29,29 @@ export class FarmerForm {
     });
   }
 
-   generateFarmerId(): number{
+   generateFarmerId(){
       return Math.floor(1000 + Math.random()* 9000);
     }
 
-    onSubmit(){
-      console.log(this.farmerForm);
-      
+    onSubmit():void{
+      if(this.farmerForm.valid){
+        console.log('Farmer Form submitted',this.farmerForm.value);
+        alert('Farmer Details Saved For : '+this.farmerForm.get('farmerName')?.value);
+        this.resetForm();
+      }else{
+        this.farmerForm.markAllAsTouched();
+      alert("fill in all required fields correctly");
+      }
     }
+
+    resetForm(): void{
+    this.farmerForm.reset({
+    farmerId: this.generateFarmerId(),
+    date: new Date().toISOString().slice(0, 10),
+    milkDispatch: '',
+    totalAmount: 0,
+  });
+  this.farmerForm.get('farmerId')?.disable();
+  this.farmerForm.get('totalAmount')?.disable();
+}
 }

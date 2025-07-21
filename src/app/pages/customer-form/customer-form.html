@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container main-content">
+      <div class="card">
+        <h2 class="card-title">
+          Manage
+          Customer Details
+        </h2>
+
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+          <div class="grid-layout">
+            <!-- CustomerId -->
+            <div class="form-group">
+              <label for="customerId" class="form-label">
+                Customer ID
+              </label>
+              <input
+                type="text"
+                id="customerId"
+                formControlName="customerId"
+                class="form-input-disabled"
+                readonly
+              />
+            </div>
+
+            <!-- CustomerName -->
+            <div class="form-group">
+              <label for="customerName" class="form-label">
+                Customer Name
+              </label>
+              <input
+                type="text"
+                id="customerName"
+                formControlName="customerName"
+                placeholder="Enter customer's full name"
+                required
+              />
+              <div
+                *ngIf="
+                  customerForm.get('customerName')?.touched &&
+                  customerForm.get('customerName')?.invalid
+                "
+              >
+                <small class="error-text">Customer Name is required.</small>
+              </div>
+            </div>
+
+            <!-- CustomerMobileNo -->
+            <div class="form-group">
+              <label for="customerMobileNo" class="form-label">
+               Customer
+                Mobile No
+              </label>
+              <input
+                type="tel"
+                id="customerMobileNo"
+                formControlName="customerMobileNo"
+                placeholder="e.g., 9876543210"
+                pattern="[0-9]{10}"
+                title="Please enter a 10-digit mobile number"
+                required
+              />
+              <div
+                *ngIf="
+                  customerForm.get('customerMobileNo')?.touched &&
+                  customerForm.get('customerMobileNo')?.invalid
+                "
+              >
+                <small class="error-text"
+                  >Mobile Number is required and must be 10 digits.</small
+                >
+              </div>
+            </div>
+
+            <!-- CustomerAddress -->
+            <div class="form-group">
+              <label for="customerAddress" class="form-label">
+                Customer Address
+              </label>
+              <textarea
+                id="customerAddress"
+                formControlName="customerAddress"
+                rows="2"
+                placeholder="Enter full postal address"
+                required
+              ></textarea>
+              <div
+                *ngIf="
+                  customerForm.get('customerAddress')?.touched &&
+                  customerForm.get('customerAddress')?.invalid
+                "
+              >
+                <small class="error-text">Address is required.</small>
+              </div>
+            </div>
+
+            <!-- CustomerLocation -->
+            <div class="form-group">
+              <label for="customerLocation" class="form-label">
+                Customer Location
+              </label>
+              <input
+                type="text"
+                id="customerLocation"
+                formControlName="customerLocation"
+                placeholder="e.g., Kothrud, Pune"
+                required
+              />
+              <div
+                *ngIf="
+                  customerForm.get('customerLocation')?.touched &&
+                  customerForm.get('customerLocation')?.invalid
+                "
+              >
+                <small class="error-text">Location is required.</small>
+              </div>
+            </div>
+
+            <!-- Date -->
+            <div class="form-group">
+              <label for="date" class="form-label">
+                Date
+              </label>
+              <input type="date" id="date" formControlName="date" required />
+              <div
+                *ngIf="
+                  customerForm.get('date')?.touched &&
+                  customerForm.get('date')?.invalid
+                "
+              >
+                <small class="error-text">Date is required.</small>
+              </div>
+            </div>
+
+            <!-- MilkDemand -->
+            <div class="form-group">
+              <label for="milkDemand" class="form-label">
+               Milk Demand (Liters)
+              </label>
+              <input
+                type="number"
+                id="milkDemand"
+                formControlName="milkDemand"
+                placeholder="e.g., 2.5"
+                step="0.1"
+                min="0"
+                required
+              />
+              <div
+                *ngIf="
+                  customerForm.get('milkDemand')?.touched &&
+                  customerForm.get('milkDemand')?.invalid
+                "
+              >
+                <small class="error-text"
+                  >Milk demand is required and must be a positive number.</small
+                >
+              </div>
+            </div>
+
+            <!-- TodaysOutstanding -->
+            <div class="form-group">
+              <label for="todaysOutstanding" class="form-label">
+              Today's
+                Outstanding (INR)
+              </label>
+              <input
+                type="text"
+                id="todaysOutstanding"
+                formControlName="todaysOutstanding"
+                class="form-input-disabled"
+                readonly
+              />
+            </div>
+
+            <!-- OverallOutstanding -->
+            <div class="form-group">
+              <label for="overallOutstanding" class="form-label">
+              Overall
+                Outstanding (INR)
+              </label>
+              <input
+                type="text"
+                id="overallOutstanding"
+                formControlName="overallOutstanding"
+                class="form-input-disabled"
+                readonly
+              />
+            </div>
+             <div class="form-group">
+            <button
+              type="submit"
+              class="submit-button"
+  
+            >
+            Record Payment
+            </button>
+          </div>
+          </div>
+
+         
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

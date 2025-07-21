@@ -7,7 +7,7 @@
                Farmer Milk Entry Form
             </h2>
 
-            <form [formGroup]="farmerForm" (ngsubmit)="onSubmit()">
+            <form [formGroup]="farmerForm" (ngSubmit)="onSubmit()">
                 <div class="grid-layout">
                     <div class="form-group">
                         <label class="form-label">
@@ -76,11 +76,11 @@
                     <label class="form-label">
                        Total Amount (INR)
                     </label>
-                    <input type="text" formControlName="totalAmount"   [disabled]="farmerForm.invalid">
+                    <input type="text" formControlName="totalAmount"  readonly >
                 </div>
 
                 <div class="button-container">
-                    <button type="submit" class="submit-button" >
+                    <button type="submit" class="submit-button"  >
                       Submit
                     </button>
                 </div>
