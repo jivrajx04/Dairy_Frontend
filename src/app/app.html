@@ -1,5 +1,21 @@
-
-<app-farmer-form>
-
-
-    <router-outlet></router-outlet>
+<nav class="navbar">
+      <div class="container navbar-content">
+        <h1 class="navbar-title">
+          <svg class="icon icon-blue" data-lucide="milk"></svg> Dairy Dashboard
+        </h1>
+        <div class="nav-links">
+          <a routerLink="/dashboard" routerLinkActive="active-link">
+            <svg class="icon" data-lucide="layout-dashboard"></svg>Dashboard
+          </a>
+          <a routerLink="/customer-requests" routerLinkActive="active-link">
+            <svg class="icon" data-lucide="users"></svg>Customer Requests
+          </a>
+          <a routerLink="/farmer-collections" routerLinkActive="active-link">
+            <svg class="icon" data-lucide="tractor"></svg>Farmer Collections
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content-area">
+      <router-outlet></router-outlet>
+    </div>

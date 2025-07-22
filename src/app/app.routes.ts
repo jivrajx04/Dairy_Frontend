@@ -1,8 +1,12 @@
 import { Routes } from '@angular/router';
-import { FarmerForm } from './pages/farmer-form/farmer-form';
-import { CustomerForm } from './pages/customer-form/customer-form';
+
 
 export const routes: Routes = [
-    {path:"farmer", component:FarmerForm},
-    {path:"customer", component:CustomerForm}
+  
+    {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+    {
+        path: 'dashboard',
+        loadComponent: ()=> import('./components/dashboard-overview/dashboard-overview').then(m => m.DashboardOverview),
+        title: 'Dashboard Overview'
+    }
 ];
